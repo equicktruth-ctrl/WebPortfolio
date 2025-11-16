@@ -4,7 +4,7 @@ const app = express();
 const PORT = 5050;
 
 require('dotenv').config();
-const API_KEY = process.env.PPLX_API_KEY;
+const API_KEY = process.env.PERPLEXITY_API_KEY;
 
 // Debug: Print key at startup; remove or comment out when live!
 console.log('Loaded API KEY:', API_KEY);

@@ -14,17 +14,46 @@
     }
 
     header {
-      padding: 2rem 0 1.5rem 0;
-      text-align: center;
-      background: linear-gradient(135deg, #0d6efd 0%, #6610f2 60%, #28a745 100%);
-      color: white;
-      margin-bottom: 2.5rem;
-    }
+  position: relative;    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 60%, #28a745 100%);
+  color: white;
+  margin-bottom: 2.5rem;
+  padding: 2rem 0 1.5rem 0;
+}
 
-    nav {
-      margin-bottom: 1.5rem;
-    }
+#mode-logo {
+  position: absolute;
+  left: 2rem;
+  top: 10%;
+  /* Adjust the 'top' value as needed for best vertical alignment */
+  height: 64px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
 
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+nav {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+  #mode-logo {
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
+}
      nav a {
       margin: 0 1rem;
       color: #fff;
@@ -138,6 +167,8 @@
 
 <body>
   <header>
+    <img id="mode-logo" src="assets/logo_lightmode_onheader.png" alt="Logo" style="height: 64px; margin-right: 1rem;" />
+  <div class="header-content">
     <nav>
       <a href="#about">About</a>
       <a href="#blog">Blog</a>
@@ -148,12 +179,11 @@
     <img src="assets/profile.jpg" alt="Erik Vigorito full length" class="profile-img" />
     <h1>Erik Vigorito</h1>
     <p>Operations Leader | IT Systems Specialist | Technology Remote Operations</p>
-    <p>Email: <a href="mailto:erikjvigorito@gmail.com" style="color:white;">erikjvigorito@gmail.com</a> | Phone: (772)
-      501-6879</p>
-    <p><a href="https://www.linkedin.com/in/erik-j-v" target="_blank" rel="noopener noreferrer"
-        style="color:white;">LinkedIn Profile</a></p>
+    <p>Email: <a href="mailto:erikjvigorito@gmail.com" style="color:white;">erikjvigorito@gmail.com</a> | Phone: (772) 501-6879</p>
+    <p><a href="https://www.linkedin.com/in/erik-j-v" target="_blank" rel="noopener noreferrer" style="color:white;">LinkedIn Profile</a></p>
     <a href="resume.pdf" download class="btn-custom">Download Resume</a>
     <a href="mailto:erikjvigorito@gmail.com" class="btn-custom">Contact Me</a>
+  </div>
   </header>
 
   <main class="container">  
@@ -392,61 +422,73 @@
   <script>
     async function askPerplexity(question) {
       try {
-        const response = await fetch("http://localhost:5050/qna", {
+        const response = await fetch("/.netlify/functions/ask", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question }),
-        });
+         },
+         body: JSON.stringify({ question }),
+       });
 
-        if (!response.ok) {
-          throw new Error(`API error: ${response.status} ${response.statusText}`);
-        }
+       if (!response.ok) {
+         throw new Error(`API error: ${response.status} ${response.statusText}`);
+       }
 
-        const data = await response.json();
-        return data.answer || "No answer received.";
-      } catch (error) {
-        return "Error: " + error.message;
-      }
-    }
+       const data = await response.json();
+       return data.answer || "No answer received.";
+     } catch (error) {
+       return "Error: " + error.message;
+     }
+   }
 
     document.getElementById("ask-btn").addEventListener("click", async () => {
-      const questionEl = document.getElementById("question-input");
-      const answerEl = document.getElementById("answer-output");
-      const question = questionEl.value.trim();
+  const questionEl = document.getElementById("question-input");
+  const answerEl = document.getElementById("answer-output");
+  const question = questionEl.value.trim();
 
-      if (!question) {
-        answerEl.textContent = "Please enter a question.";
-        return;
-      }
+  if (!question) {
+    answerEl.textContent = "Please enter a question.";
+    return;
+  }
 
-      answerEl.textContent = "Thinking...";
+  answerEl.textContent = "Thinking...";
 
-      const answer = await askPerplexity(question);
-      answerEl.textContent = answer;
-    });
+  const answer = await askPerplexity(question);
+  answerEl.textContent = answer;
+});
 
     // Light/Dark Mode toggle code
     document.addEventListener('DOMContentLoaded', function () {
-      const toggleButton = document.getElementById("mode-toggle");
-      const body = document.body;
+  const toggleButton = document.getElementById("mode-toggle");
+  const body = document.body;
+  const logo = document.getElementById("mode-logo");
 
-      if (localStorage.getItem("mode") === "dark") {
-        body.classList.add("dark-mode");
-      }
+  function updateLogo() {
+    if (body.classList.contains("dark-mode")) {
+      logo.src = "assets/logo_darkmode_onheader.png";
+    } else {
+      logo.src = "assets/logo_lightmode_onheader.png";
+    }
+  }
 
-      if (toggleButton) {
-        toggleButton.addEventListener("click", function () {
-          body.classList.toggle("dark-mode");
-          if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("mode", "dark");
-          } else {
-            localStorage.setItem("mode", "light");
-          }
-        });
+  // On page load, set logo based on saved mode
+  if (localStorage.getItem("mode") === "dark") {
+    body.classList.add("dark-mode");
+  }
+  updateLogo();
+
+  if (toggleButton) {
+    toggleButton.addEventListener("click", function () {
+      body.classList.toggle("dark-mode");
+      if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("mode", "dark");
+      } else {
+        localStorage.setItem("mode", "light");
       }
+      updateLogo();
     });
+  }
+});
   </script>
 </body>
 </html>

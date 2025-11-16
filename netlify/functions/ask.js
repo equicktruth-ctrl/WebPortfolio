@@ -1,13 +1,40 @@
-// In index.html, inside <script>
-fetch("/.netlify/functions/ask", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ question: document.getElementById("questionBox").value })
-})
-.then(r => r.json())
-.then(data => {
-  // display the answer
-})
-.catch(err => {
-  // display error
-});
+const fetch = require('node-fetch');
+
+exports.handler = async function(event, context) {
+  try {
+    const { question } = JSON.parse(event.body);
+
+    const apiResponse = await fetch('https://api.perplexity.ai/ask', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ question })
+    });
+
+    // Log status for debugging
+    console.log('API response status:', apiResponse.status);
+
+    if (!apiResponse.ok) {
+      const errText = await apiResponse.text();
+      console.error('Perplexity API error:', errText);
+      throw new Error(`Perplexity API error: ${apiResponse.status} ${apiResponse.statusText} - ${errText}`);
+    }
+
+    const data = await apiResponse.json();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ answer: data.answer })
+    };
+  } catch (error) {
+    // Log the error for debugging
+    console.error('Function error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message })
+    }
+  }
+}
+
