@@ -29,11 +29,13 @@ exports.handler = async function(event, context) {
     }
 
     const data = await apiResponse.json();
+    const aiAnswer = data.choices?.[0]?.message?.content || "No answer received.";
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ answer: data.answer })
+      body: JSON.stringify({ answer: aiAnswer })
     };
+
   } catch (error) {
     // Log the error for debugging
     console.error('Function error:', error);
