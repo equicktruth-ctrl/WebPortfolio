@@ -1,6 +1,6 @@
 # Portfolio Website
 
-This portfolio highlights my journey from C-Store management into IT, remote work, and data annotation. It’s designed as a single-page site with added sections for contact, certifications, and technical content, then expandable with a blog for tutorials and professional updates.
+This portfolio highlights my journey from C-Store management into IT, remote work, and data annotation. It’s designed as a single-page site with added sections for contact, certifications, and technical content, then expandable with a evolvng blog for tutorials and professional updates.
 
 ## Structure
 
@@ -13,7 +13,7 @@ This portfolio highlights my journey from C-Store management into IT, remote wor
 ## Features
 
 - Responsive layout for mobile and desktop viewing
-- Contact form powered by Netlify for recruiter outreach
+- Contact form powered by Netlify for recruiter and network outreach
 - Blog section for original articles and learning content
 - Downloadable resume and LinkedIn links
 
@@ -29,7 +29,7 @@ This portfolio highlights my journey from C-Store management into IT, remote wor
 - HTML5 + CSS3
 - Visual Studio Code
 - GitHub version control
-- Netlify continuous deployment
+- Netlify for CI/CD and hosting
 
 ## Author
 
