@@ -327,22 +327,27 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="assets/logo.png" alt="EV Logo" class="logo-img">
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html" class="active">Skills</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+    <header>
+    <img id="mode-logo" src="assets/logo_lightmode_onheader.png" alt="Logo" />
+    <div class="header-content">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#blog">Blog</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="index.html#education">Education</a>
+            <button id="mode-toggle" aria-label="Toggle light and dark mode">Toggle Light/Dark Mode</button>
+        </nav>
+        
+        <!-- Hero Section -->
+        <div class="projects-hero">
+            <h1>Skills & Technologies</h1>
+            <p>A comprehensive overview of the technologies, languages, and tools I work with to build amazing software experiences and deliver innovative solutions.</p>
         </div>
-    </nav>
-
+    </div>
+</header>
     <!-- Hero Section -->
     <section class="skills-hero">
         <h1>Skills & Technologies</h1>
