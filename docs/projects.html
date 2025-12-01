@@ -1,401 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Projects - Erik Vigorito</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-    <link rel="stylesheet" href="styles.css" />   
-    <style>
-        body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #f5f5f5;
-          color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Projects - Erik Vigorito</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
-        header {
-          position: relative;    
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #0d6efd 0%, #6610f2 60%, #28a745 100%);
-          color: white;
-          margin-bottom: 2.5rem;
-          padding: 2rem 0 1.5rem 0;
-        }
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d6efd 0%, #6610f2 60%, #28a745 100%);
+      color: white;
+      margin-bottom: 2.5rem;
+      padding: 2rem 0 1.5rem 0;
+    }
 
-        #mode-logo {
-          position: absolute;
-          left: 2rem;
-          top: 10%;
-          height: 64px;
-          border-radius: 10px;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
+    #mode-logo {
+      height: 64px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: block;
+      margin: 0 auto 0.75rem auto;
+    }
 
-        .header-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          flex: 1;
-        }
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
 
-        nav {
-          margin-bottom: 1.5rem;
-        }
+    nav {
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-        @media (max-width: 768px) {
-          header {
-            flex-direction: column;
-          }
-          #mode-logo {
-            margin-bottom: 1rem;
-            margin-left: 0;
-          }
-        }
+    nav a {
+      margin: 0;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      transition: background 0.2s;
+      border-radius: 7px;
+    }
 
-        nav a {
-          margin: 0 1rem;
-          color: #fff;
-          font-weight: 600;
-          text-decoration: none;
-          font-size: 1.2rem;
-          padding: 0.5rem 1rem;
-          transition: background 0.2s;
-          border-radius: 7px;
-        }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffe0b2;
+    }
 
-        nav a:hover {
-          background: rgba(255, 255, 255, 0.15);
-          color: #ffe0b2;
-        }
+    nav a.active {
+      background: rgba(255, 255, 255, 0.25);
+    }
 
-        nav a.active {
-          background: rgba(255, 255, 255, 0.25);
-        }
+    .mode-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      color: #fff;
+      font-size: 1.2rem;
+    }
 
-        body.dark-mode {
-          background-color: #23272f;
-          color: #fff;
-        }
+    .mode-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
 
-        body.dark-mode header {
-          background: linear-gradient(135deg, #333e60 0%, #37375c 60%, #1a422e 100%);
-          color: #d1dbe7;
-        }
+    body.dark-mode .mode-toggle {
+      background: rgba(0, 0, 0, 0.4);
+    }
 
-        /* Projects Page Specific Styles */
-        .projects-hero {
-            padding: 60px 20px;
-            text-align: center;
-            color: white;
-        }
+    body.dark-mode {
+      background-color: #23272f;
+      color: #fff;
+    }
 
-        .projects-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+    body.dark-mode header {
+      background: linear-gradient(135deg, #333e60 0%, #37375c 60%, #1a422e 100%);
+      color: #d1dbe7;
+    }
 
-        .projects-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+    /* Projects Page Specific Styles */
+    .projects-hero {
+      padding: 60px 20px;
+      text-align: center;
+      color: white;
+    }
 
-        .projects-controls {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+    .projects-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
 
-        .repo-count {
-            color: #666;
-            font-size: 1rem;
-        }
+    .projects-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-        .sort-dropdown {
-            padding: 10px 15px;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            background: white;
-            color: #667eea;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: 600;
-        }
+    .projects-controls {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
 
-        .projects-grid {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-        }
+    .repo-count {
+      color: #666;
+      font-size: 1rem;
+    }
 
-        .project-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+    .sort-dropdown {
+      padding: 10px 15px;
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      background: white;
+      color: #667eea;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
-            border-color: #667eea;
-        }
+    .projects-grid {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+    }
 
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+    .project-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
 
-        .project-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin: 0;
-            flex: 1;
-        }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+      border-color: #667eea;
+    }
 
-        .project-name a {
-            color: #667eea;
-            text-decoration: none;
-        }
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
 
-        .project-name a:hover {
-            text-decoration: underline;
-        }
+    .project-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 0;
+      flex: 1;
+    }
 
-        .external-link-icon {
-            color: #667eea;
-            font-size: 1.1rem;
-        }
+    .project-name a {
+      color: #667eea;
+      text-decoration: none;
+    }
 
-        .project-description {
-            color: #6b7280;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            min-height: 60px;
-        }
+    .project-name a:hover {
+      text-decoration: underline;
+    }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
+    .external-link-icon {
+      color: #667eea;
+      font-size: 1.1rem;
+    }
 
-        .tag {
-            background: #f3f4f6;
-            color: #667eea;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+    .project-description {
+      color: #6b7280;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      min-height: 60px;
+    }
 
-        .project-meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
 
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+    .tag {
+      background: #f3f4f6;
+      color: #667eea;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
 
-        .language-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
 
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            justify-content: center;
-        }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-        .github-btn:hover {
-            background: #5568d3;
-            transform: translateX(3px);
-        }
+    .language-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
 
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #667eea;
-            font-size: 1.2rem;
-        }
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #667eea;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+    }
 
-        .error {
-            text-align: center;
-            padding: 60px 20px;
-            color: #dc2626;
-            font-size: 1.2rem;
-        }
+    .github-btn:hover {
+      background: #5568d3;
+      transform: translateX(3px);
+    }
 
-        .view-all-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 2px solid #667eea;
-            margin: 40px auto;
-            transition: all 0.3s ease;
-        }
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #667eea;
+      font-size: 1.2rem;
+    }
 
-        .view-all-btn:hover {
-            background: #667eea;
-            color: white;
-        }
+    .error {
+      text-align: center;
+      padding: 60px 20px;
+      color: #dc2626;
+      font-size: 1.2rem;
+    }
 
-        .view-all-container {
-            text-align: center;
-            margin: 40px 0;
-        }
+    .view-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #667eea;
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid #667eea;
+      margin: 40px auto;
+      transition: all 0.3s ease;
+    }
 
-        footer {
-          padding: 2rem 0;
-          text-align: center;
-          color: #666;
-          background: #f8f9fa;
-          margin-top: 3rem;
-          border-top: 1px solid #e3e3e3;
-          font-size: 1rem;
-        }
+    .view-all-btn:hover {
+      background: #667eea;
+      color: white;
+    }
 
-        footer a {
-          color: #6610f2;
-          text-decoration: underline;
-        }
+    .view-all-container {
+      text-align: center;
+      margin: 40px 0;
+    }
 
-        footer a:hover {
-          color: #0d6efd;
-        }
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: #666;
+      background: #f8f9fa;
+      margin-top: 3rem;
+      border-top: 1px solid #e3e3e3;
+      font-size: 1rem;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .projects-hero h1 {
-                font-size: 2rem;
-            }
+    footer a {
+      color: #6610f2;
+      text-decoration: underline;
+    }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+    footer a:hover {
+      color: #0d6efd;
+    }
 
-            .projects-controls {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+    body.dark-mode footer {
+      background: #181c21;
+      color: #aaa;
+      border-top: 1px solid #282c34;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .projects-hero h1 {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <img id="mode-logo" src="assets/logo_lightmode_onheader.png" alt="Logo" />
-        <div class="header-content">
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="skills.html">Skills</a>
-                <a href="experience.html">Experience</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#blog">Blog</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="skills.html#education">Education</a>
-                <button id="mode-toggle" aria-label="Toggle light and dark mode">Toggle Light/Dark Mode</button>
-            </nav>
+  <header>
+    <div class="header-content">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="experience.html">Experience</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="skills.html#education">Education</a>
+        <button id="mode-toggle" class="mode-toggle" aria-label="Toggle light and dark mode">
+          <span class="icon">☀️</span>
+        </button>
+      </nav>
 
-            <!-- Hero Section -->
-            <div class="projects-hero">
-                <h1>My Projects</h1>
-                <p>A collection of projects I've been working on. From web applications to API integrations, here's what keeps me busy.</p>
-            </div>
-        </div>
-    </header>
+      <div class="projects-hero">
+        <h1>My Projects</h1>
+        <p>A collection of projects I've been working on. From web applications to API integrations, here's what keeps me busy.</p>
+      </div>
+    </div>
+  </header>
 
-            <!-- Controls Section -->
-        <div class="projects-controls">
-          <div class="repo-count" id="repoCount">Loading repositories...</div>
-          <select class="sort-dropdown" id="sortDropdown" onchange="sortProjects()">
-            <option value="updated">Recently Updated</option>
-            <option value="stars">Most Stars</option>
-            <option value="name">Name (A-Z)</option>
-          </select>
-        </div>
+  <div class="projects-controls">
+    <div class="repo-count" id="repoCount">Loading repositories...</div>
+    <select class="sort-dropdown" id="sortDropdown" onchange="sortProjects()">
+      <option value="updated">Recently Updated</option>
+      <option value="stars">Most Stars</option>
+      <option value="name">Name (A-Z)</option>
+    </select>
+  </div>
 
-        <!-- Portfolio Case Study -->
-        <section id="portfolio-build" style="max-width: 900px; margin: 2rem auto 3rem; padding: 2rem; background: #1f2937; border-radius: 12px;">
-          <h2 style="color: #ffffff; margin-bottom: 0.75rem;">How I Built My Portfolio</h2>
-          <p style="color: #d1d5db; margin-bottom: 1rem;">
-            A step-by-step walkthrough of how I designed, developed, and deployed this portfolio website, including layout decisions, GitHub Pages setup, dark mode, and API integrations.
-          </p>
-          <div style="margin-bottom: 1rem; color: #9ca3af;">
-            <strong>Tech used:</strong> HTML, CSS, JavaScript, GitHub Pages, Netlify Functions, Perplexity API.
-          </div>
-          <a href="blog/post1.html" class="github-btn" style="width: auto; display: inline-flex;">
-            Read the Case Study →
-          </a>
-        </section>
-
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGrid">
-          <div class="loading">Loading your projects from GitHub...</div>
-        </div>
-
-
-            <!-- View All on GitHub Button -->
-            <div class="view-all-container">
-                <a href="https://github.com/equicktruth-ctrl?tab=repositories" target="_blank" class="view-all-btn">
-                    <span>View All Projects on GitHub</span>
-                    <span>↗</span>
-                </a>
-            </div>
-
-      <!-- Footer -->
-  <footer>
-    <p>Built with ❤️ • Deployed via GitHub Pages</p>
-    <p>Invite friends to Comet with this link:
-      <a href="https://www.perplexity.ai" target="_blank">Get Pro & Earn $20</a>
+  <section id="portfolio-build" style="max-width: 900px; margin: 2rem auto 3rem; padding: 2rem; background: #1f2937; border-radius: 12px;">
+    <h2 style="color: #ffffff; margin-bottom: 0.75rem;">How I Built My Portfolio</h2>
+    <p style="color: #d1d5db; margin-bottom: 1rem;">
+      A step-by-step walkthrough of how I designed, developed, and deployed this portfolio website, including layout decisions, GitHub Pages setup, dark mode, and API integrations.
     </p>
+    <div style="margin-bottom: 1rem; color: #9ca3af;">
+      <strong>Tech used:</strong> HTML, CSS, JavaScript, GitHub Pages, Netlify Functions, Perplexity API.
+    </div>
+    <a href="blog/post1.html" class="github-btn" style="width: auto; display: inline-flex;">
+      Read the Case Study →
+    </a>
+  </section>
+
+  <div class="projects-grid" id="projectsGrid">
+    <div class="loading">Loading your projects from GitHub...</div>
+  </div>
+
+  <div class="view-all-container">
+    <a href="https://github.com/equicktruth-ctrl?tab=repositories" target="_blank" class="view-all-btn">
+      <span>View All Projects on GitHub</span>
+      <span>↗</span>
+    </a>
+  </div>
+
+  <footer>
+    <img id="mode-logo" src="assets/logo_lightmode_onheader.png" alt="Logo" />
+    <div>
+      Built with ❤️ • Deployed via Perplexity<br />
+      Invite friends to Comet with this link:
+      <a href="https://pplx.ai/equicktrut90737" target="_blank" rel="noopener noreferrer">
+        Get Pro & Earn $20
+      </a>
+    </div>
   </footer>
 
   <!-- GitHub API Script -->
@@ -414,7 +442,6 @@
       'Ruby': '#701516'
     };
 
-    // Fetch GitHub Repositories
     async function fetchGitHubRepos() {
       try {
         const response = await fetch('https://api.github.com/users/equicktruth-ctrl/repos?sort=updated&per_page=100');
@@ -425,11 +452,9 @@
 
         allRepos = await response.json();
 
-        // Update repo count
         document.getElementById('repoCount').textContent =
           `Showing ${allRepos.length} repositories`;
 
-        // Display repos
         displayRepos(allRepos);
       } catch (error) {
         console.error('Error fetching repos:', error);
@@ -448,7 +473,6 @@
       }
     }
 
-    // Display Repositories
     function displayRepos(repos) {
       const grid = document.getElementById('projectsGrid');
 
@@ -495,16 +519,31 @@
       }).join('');
     }
 
-    // Call fetch on page load
+    function sortProjects() {
+      const value = document.getElementById('sortDropdown').value;
+      let sorted = [...allRepos];
+
+      if (value === 'stars') {
+        sorted.sort((a, b) => b.stargazers_count - a.stargazers_count);
+      } else if (value === 'name') {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        sorted.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      }
+
+      displayRepos(sorted);
+    }
+
     fetchGitHubRepos();
   </script>
 
-  <!-- Light/Dark Mode Script -->
+  <!-- Light/Dark Mode Script with sun/moon -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const toggleButton = document.getElementById("mode-toggle");
       const body = document.body;
       const logo = document.getElementById("mode-logo");
+      const iconSpan = toggleButton ? toggleButton.querySelector(".icon") : null;
 
       function updateLogo() {
         if (body.classList.contains("dark-mode")) {
@@ -514,20 +553,26 @@
         }
       }
 
+      function updateIcon() {
+        if (!iconSpan) return;
+        iconSpan.textContent = body.classList.contains("dark-mode") ? "🌙" : "☀️";
+      }
+
       if (localStorage.getItem("mode") === "dark") {
         body.classList.add("dark-mode");
       }
       updateLogo();
+      updateIcon();
 
       if (toggleButton) {
         toggleButton.addEventListener("click", function () {
           body.classList.toggle("dark-mode");
-          if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("mode", "dark");
-          } else {
-            localStorage.setItem("mode", "light");
-          }
+          localStorage.setItem(
+            "mode",
+            body.classList.contains("dark-mode") ? "dark" : "light"
+          );
           updateLogo();
+          updateIcon();
         });
       }
     });
